@@ -1,5 +1,5 @@
-const bot_reply = require('../../bot_reply');
-const {config} = require('../Config/config');
+
+const {config} = require('../../Config/config');
 
 module.exports = (bot) => {
     

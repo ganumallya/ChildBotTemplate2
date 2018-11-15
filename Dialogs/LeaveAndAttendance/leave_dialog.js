@@ -1,5 +1,5 @@
 
-const {config} = require('../Config/config');
+const {config} = require('../../Config/config');
 
 module.exports = (bot) => {
     
