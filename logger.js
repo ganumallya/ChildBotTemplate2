@@ -1,7 +1,6 @@
 const winston = require('winston');
 
 require('dotenv-extended').load({path: '.env'});
-const {mongo} = require('./Config/config');
 
 const maskFormat = winston.format(info => {    
     if(info.message.hasOwnProperty('untrained_text')){
