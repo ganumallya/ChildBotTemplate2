@@ -6,7 +6,11 @@
   "dependencies": {
     "botbuilder": "^3.13.1",
     "botbuilder-azure": "^3.0.4",
-    "restify": "^5.0.0"
+    "botbuilder-cognitiveservices": "^1.2.0",
+    "dotenv-extended": "^2.3.0",
+    "mongodb": "^3.1.9",
+    "restify": "^5.0.0",
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "request": "^2.81.0",
