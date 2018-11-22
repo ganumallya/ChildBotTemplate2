@@ -55,10 +55,10 @@ bot.use({
 });
 
 // Setting Storage for Bot
-//bot.set('storage', tableStorage);
+bot.set('storage', tableStorage);
 
-var in_memory_storage = new builder.MemoryBotStorage();
-bot.set('storage', in_memory_storage); 
+// var in_memory_storage = new builder.MemoryBotStorage();
+// bot.set('storage', in_memory_storage); 
 
 //Dialog Configurations
 require('./Dialogs/dialog')(bot);
