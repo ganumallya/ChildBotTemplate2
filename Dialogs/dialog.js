@@ -15,8 +15,10 @@ module.exports = (bot) => {
 
 
     //Conversation Registerations for LUIS
-    require('./LeaveAndAttendance/attendance_dialog')(bot);
-    require('./LeaveAndAttendance/leave_dialog')(bot);
+    require('./HRPolicies/attendance_dialog')(bot);
+    require('./HRPolicies/leave_dialog')(bot);
+    require('./ITSupport/laptopScreen_dialog')(bot);
+    require('./ITSupport/printer')(bot);
   
 
     //Qna dialog Registeration
