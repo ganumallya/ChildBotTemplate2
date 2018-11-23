@@ -7,7 +7,7 @@ module.exports = (bot) => {
     
     bot.dialog('/HROnboarding', [
         function (session, args, next) {
-            console.log("Reach QNA Block")
+            console.log("Reach QNA Block for HROnboarding Query")
 
             var query = session.message.text;
             qnamakerservice(hr_qna_maker,query,(result)=>{

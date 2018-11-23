@@ -9,7 +9,7 @@ console.log(config.CONFIDENCE_THRESHOLD);
 module.exports = (bot) => {
     bot.dialog('/CasualTalks', [
         function (session, args, next) {
-            console.log("Reach QNA Block")
+            console.log("Reach QNA Block for small talks")
             console.log(smalltalk_qna_maker);
 
             var query = session.message.text;
