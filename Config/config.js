@@ -1,5 +1,6 @@
 const luis = require('./luis_config');
-const qna_maker = require('./qna_maker_config');
+const hr_qna_maker = require('./hr_qna_maker_config');
+const smalltalk_qna_maker =require('./smalltalks_qna_maker_config');
 
 //Threshold confidence % to be used for selecting response
 const config = {
@@ -11,6 +12,7 @@ const config = {
 
 module.exports = {
     luis: luis,
-    qna_maker:qna_maker,
+    hr_qna_maker:hr_qna_maker,
+    smalltalk_qna_maker:smalltalk_qna_maker,
     config: config
 }

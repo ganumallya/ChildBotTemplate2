@@ -10,6 +10,7 @@ module.exports = (bot) => {
         },
         function(session,results){
             var timeD = builder.EntityRecognizer.resolveTime([results.response]); 
+            console.log(timeD);
             builder.Prompts.choice(session,"When are you getting this issue. Is it when you touch the screen or is it screen flickering ?","By touch|Flickering",{ listStyle:builder.ListStyle.button});
         },
         function(session,results){
@@ -28,10 +29,10 @@ module.exports = (bot) => {
         },
         function(session,results){
             console.log(results);
-            if(results.response.entity.toLowerCase().includes('Me')){
+            if(results.response.entity.toLowerCase().includes('me')){
                 session.endDialog("I have raised a request. IT support person will come to your desk in 30 minutes. The person will resolve the issue.");
             }
-            else if(results.response.entity.toLowerCase().includes('friend') || results.response.toLowerCase().includes('colleague')){
+            else if(results.response.entity.toLowerCase().includes('friend') || results.response.entity.toLowerCase().includes('colleague')){
                 session.send("Please help me with your Colleague's/Friend's Name and Employee ID");
             }
             else{

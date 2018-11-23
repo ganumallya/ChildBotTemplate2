@@ -9,20 +9,30 @@ module.exports = (bot) => {
     // Import Luis Recognizer
     bot.recognizer(luis);
     // Import QnA Recognizer
-    bot.recognizer(qna_maker);
+    //bot.recognizer(qna_maker);
 
     
 
 
     //Conversation Registerations for LUIS
+
+    //HR Onboarding dialogs
     require('./HRPolicies/attendance_dialog')(bot);
     require('./HRPolicies/leave_dialog')(bot);
+    require('./HRPolicies/hronboarding_QnAdialog')(bot);
+
+    //IT Support Dialogs
     require('./ITSupport/laptopScreen_dialog')(bot);
     require('./ITSupport/printer')(bot);
-  
+    
+    
+    //Small Talk Dialog
+    require('./smalltalk_dialog')(bot);
+
+
 
     //Qna dialog Registeration
-    require('./qna_dialog')(bot);
+   // require('./qna_dialog')(bot);
 
     
     //Custom Prompt Registerations
