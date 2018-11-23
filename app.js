@@ -5,6 +5,8 @@ A simple Language Understanding (LUIS) bot for the Microsoft Bot Framework.
 var restify = require('restify');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
+const qnamaker = require('./Dialogs/QnaMaker');
+const {smalltalk_qna_maker} = require('./Config/config');
 //require('dotenv-extended').load({path: '.env'});
 
 const bot_reply = require('./bot_reply');
@@ -40,7 +42,9 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 // This default message handler is invoked if the user's utterance doesn't
 // match any intents handled by other dialogs.
 var bot = new builder.UniversalBot(connector, function (session, args) {
-    session.send(bot_reply.didntUnderstand(), session.message.text);
+    qnamaker(smalltalk_qna_maker,session.message.text,(result)=>{
+        session.endDialog(result);
+    });
 });
 
 //Logging Incoming and Outgoing message in consoless
