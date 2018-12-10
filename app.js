@@ -17,6 +17,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
 
+
 console.log("prcess: ",process.env.MicrosoftAppId);
 // Create chat connector for communicating with the Bot Framework Service
 var connector = new builder.ChatConnector({
@@ -25,7 +26,7 @@ var connector = new builder.ChatConnector({
     openIdMetadata: process.env.BotOpenIdMetadata  
 });
 
-// Listen for messages from users 
+// Listen for messages from users
 server.post('/api/messages', connector.listen());
 
 /*----------------------------------------------------------------------------------------
@@ -59,10 +60,10 @@ bot.use({
 });
 
 // Setting Storage for Bot
-bot.set('storage', tableStorage);
+//bot.set('storage', tableStorage);
 
-// var in_memory_storage = new builder.MemoryBotStorage();
-// bot.set('storage', in_memory_storage); 
+var in_memory_storage = new builder.MemoryBotStorage();
+bot.set('storage', in_memory_storage); 
 
 //Dialog Configurations
 require('./Dialogs/dialog')(bot);

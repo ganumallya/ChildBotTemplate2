@@ -10,8 +10,11 @@ module.exports = (bot) => {
             console.log("Reach QNA Block for HROnboarding Query")
 
             var query = session.message.text;
+            console.log(query+' hello');
             qnamakerservice(hr_qna_maker,query,(result)=>{
+                console.log("Inside QnA Block");
                 session.endDialog(result);
+
             });
             
         }

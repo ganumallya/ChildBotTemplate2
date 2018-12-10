@@ -19,8 +19,10 @@ module.exports = (bot) => {
     //HR Onboarding dialogs
     require('./HRPolicies/attendance_dialog')(bot);
     require('./HRPolicies/leave_dialog')(bot);
+    require('./HRPolicies/salaryAdvance')(bot);
+    require('./HRPolicies/disciplinary')(bot);
+    require('./HRPolicies/consulting')(bot);
     require('./HRPolicies/hronboarding_QnAdialog')(bot);
-
     //IT Support Dialogs
     require('./ITSupport/laptopScreen_dialog')(bot);
     require('./ITSupport/printer')(bot);
