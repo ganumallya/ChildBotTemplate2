@@ -2,6 +2,7 @@
 var builder = require('botbuilder');
 const {config} = require('../../Config/config');
 const optionalHoliday = require('./optionalHolidaysList')
+const jsonn = require('./holidayList')
 
 module.exports = (bot) => {
     
@@ -67,7 +68,7 @@ module.exports = (bot) => {
                  session.send("The application for Leave should be made in the prescribed form or on-line using the Leave System. You should get the Leave approved by your Manager and/or HR. Privileged Leave and Casual Leave cannot be combined together.");
             }
             else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes("encashment")){
-                    session.send("Only Privileged Leave can/will be encashed. Anu unused Casual/Sick Leave will lapse at the end of the calendar year. Privileged Leave can be encashed at the time of separation.")
+                    session.send("Only Privileged Leave can/will be encashed. Any unused Casual/Sick Leave will lapse at the end of the calendar year. Privileged Leave can be encashed at the time of separation.")
             }
             }
     ]).triggerAction({
