@@ -38,9 +38,9 @@ module.exports = (bot) => {
                 else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes('policy')){
                     session.endDialog("Disciplinary policy is the action taken in response to a deviation or policy violation usually follows a pattern of increasing seriousness.");
                 }
-                else{
-                    session.endDialog("Disciplinary policy is the action taken in response to a deviation or policy violation usually follows a pattern of increasing seriousness.");
-                }
+            }
+            else{
+                session.endDialog("Disciplinary policy is the action taken in response to a deviation or policy violation usually follows a pattern of increasing seriousness.");
             }
         }
     ]).triggerAction({
