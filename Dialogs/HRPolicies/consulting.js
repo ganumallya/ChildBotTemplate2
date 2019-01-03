@@ -50,9 +50,9 @@ module.exports = (bot) => {
                 else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes('within base city')){
                     session.endDialog("Transport claim varies depepnding on the mode of transport used.");
                 }
-                else{
-                    session.endDialog("TAO's policy for Consulting defines the allowances and benefits for employees for consulting assignment within or in a city/town outside their base city in India for a short duration.");
-                }
+            }
+            else{
+                session.endDialog("TAO's policy for Consulting defines the allowances and benefits for employees for consulting assignment within or in a city/town outside their base city in India for a short duration.");
             }
         }
     ]).triggerAction({
