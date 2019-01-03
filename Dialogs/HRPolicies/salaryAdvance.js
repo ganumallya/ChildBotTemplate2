@@ -32,9 +32,9 @@ module.exports = (bot) => {
                 else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes('applying')){
                     session.endDialog("The application for Salary Advance should be made in the prescribed form. You should get the request approved ny your Department Head and/or HR and forward the approval to the Accounts Department.");
                 }
-                else{
-                    session.endDialog("The aim of this policy is to provide bridge finances to employees in case of an emergency or cetain events.");
-                }
+            }
+            else{
+                session.endDialog("The aim of this policy is to provide bridge finances to employees in case of an emergency or cetain events.");
             }
         }
     ]).triggerAction({
