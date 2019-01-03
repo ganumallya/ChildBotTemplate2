@@ -10,6 +10,7 @@ module.exports = (bot) => {
         function(session,args,next){
             console.log(args);
             if(args.intent.entities.length>0){
+                console.log("lengthttttt......"+args.intent.entities[0].resolution.values[0].toString());
                 if(args.intent.entities[0].resolution.values[0].toLowerCase().includes("sick") || args.intent.entities[0].resolution.values[0].toLowerCase().includes("casual") ){
                     session.endDialog("You are eligible for 7 Casual/Sick Leave days per annum. At any rate sick leave will not exceed 12 days in a calendar year and the days in excess of 7 days will be granted only on providing proof of illness and at the discretion of management.");
                 }else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes("privilege")){
@@ -33,6 +34,9 @@ module.exports = (bot) => {
                 }
                 else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes("encashment")){
                     session.send("Only Privileged Leave can/will be encashed. Anu unused Casual/Sick Leave will lapse at the end of the calendar year. Privileged Leave can be encashed at the time of separation.")
+                }
+                else if(args.intent.entities[0].resolution.values[0].toLowerCase().includes('carry')){
+                    session.send("Up to 30 days of PL can be carried forward to the next year. The maximum PL balance allowed is 45 days. Leave will be automatically paid out in the next payroll if your Leave Balance exceeds 45.")
                 }
             }else{
             //builder.Prompts.text(session,"In total you can avail 15 Privileged Leaves and 7 Sick/Casual Leaves in a year. Privileged Leaves and Casual Leaves cannot be combined while availing leaves. Leaves get credited at the beginning of each quarter.");
