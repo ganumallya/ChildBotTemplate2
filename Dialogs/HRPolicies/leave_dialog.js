@@ -41,7 +41,8 @@ module.exports = (bot) => {
             }else{
             //builder.Prompts.text(session,"In total you can avail 15 Privileged Leaves and 7 Sick/Casual Leaves in a year. Privileged Leaves and Casual Leaves cannot be combined while availing leaves. Leaves get credited at the beginning of each quarter.");
             session.send("In total you can avail 15 Privileged Leaves and 7 Sick/Casual Leaves in a year. Privileged Leaves and Casual Leaves cannot be combined while availing leaves. Leaves get credited at the beginning of each quarter.")
-            builder.Prompts.choice(session, "Which leave type do you want to know?", "Privileged Leave|Casual/Sick Leave|Holiday|Optional Leaves|All", { listStyle: builder.ListStyle.button });
+            //builder.Prompts.choice(session, "Which leave type do you want to know?", "Privileged Leave|Casual/Sick Leave|Holiday|Optional Leaves|All", { listStyle: builder.ListStyle.button });
+            builder.Prompts.text(session,"Which leave type do you want to know?\n1. Privileged Leave\n2. Casual/Sick Leave\n3. Holiday\n4. Optional Leave\n5. All");
             }
         },
         function(session,results){
