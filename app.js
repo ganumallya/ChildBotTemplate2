@@ -58,6 +58,13 @@ bot.use({
     }
 });
 
+bot.use({
+    funtion(session){
+        var userID = session.message.address.user.id;
+        console.log("USer Id is :"+userID)
+    }
+})
+
 // Setting Storage for Bot
 bot.set('storage', tableStorage);
 
