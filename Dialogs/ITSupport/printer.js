@@ -29,8 +29,7 @@ module.exports = (bot) => {
                         session.send('Please share printer\'s physical location for which the issue persists.');
                     }
                     else if(printer.resolution.values[0].toLowerCase().includes('printer')){
-                        //builder.Prompts.choice(session,'Please choose the appropriate category.','1. Paper Jam|2. Cartridge Replacement|3. Printer Setup on personal machine|4. Printing issues|5. Others',{ listStyle:builder.ListStyle.button});
-                        builder.Prompts.text(session,"Please choose the appropriate category:\n1.Paper Jam\n2. Cartridge Replacement\n3. Printer Setup on personal machine\n4. Printing Issues\n5. Others");
+                        builder.Prompts.choice(session,'Please choose the appropriate category.','1. Paper Jam|2. Cartridge Replacement|3. Printer Setup on personal machine|4. Printing issues|5. Others',{ listStyle:builder.ListStyle.button});
                     }
                     else{
                         session.send('I did not understand. Could you please rephraze.');
