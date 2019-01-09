@@ -2,6 +2,8 @@
 var builder = require('botbuilder');
 const {config} = require('../../Config/config');
 
+const mongo = require('../../mongoLog')
+
 module.exports = (bot) => {
     
     bot.dialog('/DisciplinaryIntentDialog', [
@@ -42,6 +44,9 @@ module.exports = (bot) => {
             else{
                 session.endDialog("Disciplinary policy is the action taken in response to a deviation or policy violation usually follows a pattern of increasing seriousness.");
             }
+            
+            var id = session.message.address.user.id;
+            mongo.createNewDaoc(id, session.message.text, res, 'AttendanceIntent')
         }
     ]).triggerAction({
         matches: 'DisciplinaryIntent',
