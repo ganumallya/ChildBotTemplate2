@@ -2,7 +2,6 @@
 var builder = require('botbuilder');
 const {config} = require('../../Config/config');
 
-const mongo = require('../../mongoLog')
 
 module.exports = (bot) => {
     
@@ -58,7 +57,7 @@ module.exports = (bot) => {
             }
             
             var id = session.message.address.user.id;
-            mongo.createNewDaoc(id, session.message.text, res, 'DisciplinaryIntent')
+            require('../../mongoLog')(id, session.message.text, res, 'DisciplinaryIntent')
         }
     ]).triggerAction({
         matches: 'DisciplinaryIntent',
