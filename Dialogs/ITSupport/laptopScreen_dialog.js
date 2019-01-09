@@ -1,7 +1,6 @@
 
 var builder = require('botbuilder');
 const {config} = require('../../Config/config');
-const mongo = require('../../mongoLog')
 
 module.exports = (bot) => {
     
@@ -9,7 +8,7 @@ module.exports = (bot) => {
         function (session, args, next) {
             var res = "Please help with a little information about the issue. From when are you facing this issue ?"
             var id = session.message.address.user.id;
-            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
+            require('../../mongoLog')(id, session.message.text, res, 'LaptopScreenIntent')
             builder.Prompts.time(session,res); 
         },
         function(session,results){
@@ -18,7 +17,7 @@ module.exports = (bot) => {
             var res = "When are you getting this issue. Is it when you touch the screen or is it screen flickering ?"
             builder.Prompts.choice(session,res,"By touch|Flickering",{ listStyle:builder.ListStyle.button});
             var id = session.message.address.user.id;
-            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
+            require('../../mongoLog')(id, session.message.text, res, 'LaptopScreenIntent')
         },
         function(session,results){
             console.log(results);
@@ -38,7 +37,7 @@ module.exports = (bot) => {
                 session.send(res);
             }
             var id = session.message.address.user.id;
-            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
+            require('../../mongoLog')(id, session.message.text, res, 'LaptopScreenIntent')
         },
         function(session,results){
             console.log(results);
@@ -57,14 +56,14 @@ module.exports = (bot) => {
                 session.send(res);
             }
             var id = session.message.address.user.id;
-            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
+            require('../../mongoLog')(id, session.message.text, res, 'LaptopScreenIntent')
         },
         function(session,results){
             console.log(results);
             var res = "I have raised a request for your Friend/Colleague. IT support person will come to his/her desk in 30 minutes. The person will resolve the issue."
             session.endDialog(res);
             var id = session.message.address.user.id;
-            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')            
+            require('../../mongoLog')(id, session.message.text, res, 'LaptopScreenIntent')            
         }
     ]).triggerAction({
         matches: 'LaptopScreenIntent',
