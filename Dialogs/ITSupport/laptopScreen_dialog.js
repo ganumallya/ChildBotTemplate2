@@ -1,48 +1,70 @@
 
 var builder = require('botbuilder');
 const {config} = require('../../Config/config');
+const mongo = require('../../mongoLog')
 
 module.exports = (bot) => {
     
     bot.dialog('/LaptopScreenIntentDialog', [
         function (session, args, next) {
-            builder.Prompts.time(session,"Please help with a little information about the issue. From when are you facing this issue ?"); 
+            var res = "Please help with a little information about the issue. From when are you facing this issue ?"
+            var id = session.message.address.user.id;
+            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
+            builder.Prompts.time(session,res); 
         },
         function(session,results){
             var timeD = builder.EntityRecognizer.resolveTime([results.response]); 
             console.log(timeD);
-            builder.Prompts.choice(session,"When are you getting this issue. Is it when you touch the screen or is it screen flickering ?","By touch|Flickering",{ listStyle:builder.ListStyle.button});
+            var res = "When are you getting this issue. Is it when you touch the screen or is it screen flickering ?"
+            builder.Prompts.choice(session,res,"By touch|Flickering",{ listStyle:builder.ListStyle.button});
+            var id = session.message.address.user.id;
+            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
         },
         function(session,results){
             console.log(results);
+            var res = ''
             if(results.response.entity.toLowerCase().includes('touch')){
-                session.send("There must be some problem with the strip cable.");
+                res = "There must be some problem with the strip cable."+"\nAre you raising this request for yourself or on behalf of your friend/colleague ?"
+                session.send(res);
                 builder.Prompts.choice(session,"Are you raising this request for yourself or on behalf of your friend/colleague ?","For Me|For Friend/Colleague",{ listStyle:builder.ListStyle.button});
             }
             else if(results.response.entity.toLowerCase().includes('flickering')){
-                session.send("There must be some problem with motherboard.");
+                res = "There must be some problem with motherboard."+"\nAre you raising this request for yourself or on behalf of your friend/colleague ?"
+                session.send(res);
                 builder.Prompts.choice(session,"Are you raising this request for yourself or on behalf of your friend/colleague ?","For Me|For Friend/Colleague",{ listStyle:builder.ListStyle.button});
             }
             else{
-                session.send("I did not understand. Can you please rephraze.");
+                var res = "I did not understand. Can you please rephraze."
+                session.send(res);
             }
+            var id = session.message.address.user.id;
+            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
         },
         function(session,results){
             console.log(results);
+            var res = ''
             if(results.response.entity.toLowerCase().includes('me')){
-                session.endDialog("I have raised a request. IT support person will come to your desk in 30 minutes. The person will resolve the issue.");
+                res = "I have raised a request. IT support person will come to your desk in 30 minutes. The person will resolve the issue."
+                session.endDialog(res);
             }
             else if(results.response.entity.toLowerCase().includes('friend') || results.response.entity.toLowerCase().includes('colleague')){
-                session.send("Please help me with your Colleague's/Friend's Name and Employee ID");
+                res = "Please help me with your Colleague's/Friend's Name and Employee ID"
+                session.send(res);
             }
             else{
                 //session.reset();
-                session.send("I did not understand. Can you please rephraze.");
+                res = "I did not understand. Can you please rephraze."
+                session.send(res);
             }
+            var id = session.message.address.user.id;
+            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')
         },
         function(session,results){
             console.log(results);
-            session.endDialog("I have raised a request for your Friend/Colleague. IT support person will come to his/her desk in 30 minutes. The person will resolve the issue.");
+            var res = "I have raised a request for your Friend/Colleague. IT support person will come to his/her desk in 30 minutes. The person will resolve the issue."
+            session.endDialog(res);
+            var id = session.message.address.user.id;
+            mongo.createNewDaoc(id, session.message.text, res, 'LaptopScreenIntent')            
         }
     ]).triggerAction({
         matches: 'LaptopScreenIntent',
