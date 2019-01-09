@@ -13,10 +13,9 @@ var blogSchema = new Schema({
 
 var Blog = mongoose.model('Blog', blogSchema);
 
-module.exports = {
-    createNewDaoc: function(id, inMsg, outMsg, intentUsed)
-    {
+module.exports = (id, inMsg, outMsg, intentUsed, callback)=>{
         var newRow = new Blog({userid: id, inmsg: inMsg, outmsg: outMsg, time: datetime, intent: intentUsed})
         newRow.save().then(() => console.log("Log saved"))
-    } 
-} 
+        //callback()
+};
+
