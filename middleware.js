@@ -10,8 +10,8 @@ module.exports = {
         next();
     },
     getSkypeID: function(session,next){
-        session.privateConversation.skypeID = session.message.address.user.id;
-        console.log("Skype user id is... "+ session.privateConversation.skypeID);
+        //session.privateConversation.skypeID = session.message.address.user.id;
+        //console.log("Skype user id is... "+ session.privateConversation.skypeID);
         next();
     }
 }
