@@ -52,7 +52,7 @@ bot.use({
     botbuilder: function (session, next) {
         myMiddleware.logIncomingMessage(session, next);
         myMiddleware.getSkypeID(session,next);
-        console.log("Skype User ID is......"+session.privateConversation.skypeID)
+        //console.log("Skype User ID is......"+session.privateConversation.skypeID)
     },
     send: function (event, next) {
         myMiddleware.logOutgoingMessage(event, next);
