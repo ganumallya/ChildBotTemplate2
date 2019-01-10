@@ -32,6 +32,7 @@ module.exports = (bot) => {
     
     //Small Talk Dialog
     require('./smalltalk_dialog')(bot);
+    require('./restrictUser')(bot)
 
 
 
