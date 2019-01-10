@@ -51,13 +51,13 @@ module.exports = (bot) => {
                         builder.Prompts.text(session,resp)
                     }
                     else{
-                        resp = "Please choose the appropriate category.\n\nPaper Jam\nCartridge Replacement\nPrinter Setup on personal machine\nPrinting issues\nOthers"
+                        resp = "Please choose the appropriate category.\n\n1. Paper Jam\n2. Cartridge Replacement\n3. Printer Setup on personal machine\n4. Printing issues"
                         builder.Prompts.text(session,resp);
                     }
                 }
             }
             else{
-                resp = "Please choose the appropriate category.\n\nPaper Jam\nCartridge Replacement\nPrinter Setup on personal machine\nPrinting issues\nOthers"
+                resp = "Please choose the appropriate category.\n\n1. Paper Jam\n2. Cartridge Replacement\n3. Printer Setup on personal machine\n4. Printing issues"
                 builder.Prompts.text(session,resp);
             }
             var id = session.message.address.user.id;
