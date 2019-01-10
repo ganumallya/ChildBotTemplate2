@@ -5,7 +5,7 @@ const { userList } = require('./../userList')
 module.exports = (bot) => {
     bot.dialog('/RestrictUserDialog', [
         function (session, args, next) {
-            session.endDialog("Het, this bot will come to you soon")
+            session.endDialog("Hey, this bot will come to you soon")
         }
     ]).triggerAction({
         onFindAction:(session,callback)=>{
