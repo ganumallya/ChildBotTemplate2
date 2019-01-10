@@ -78,7 +78,7 @@ module.exports = (bot) => {
                         session.privateConversationData.locations = title.entity;
                     }
                 }
-                if(results.response.entity.toLowerCase().includes('cartridge') || results.response.entity.toLowerCase().includes('jam')){
+                if(results.response.toLowerCase().includes('cartridge') || results.response.toLowerCase().includes('jam')){
                     resp = "Please share printer\'s physical location for which the issue persists."
                     builder.Prompts.text(session,resp);
                 }
@@ -86,11 +86,11 @@ module.exports = (bot) => {
                     resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
                     session.endDialog(resp);
                 }
-                else if(results.response.entity.toLowerCase().includes('not')){
+                else if(results.response.toLowerCase().includes('not')){
                     resp = "Please connect to the network and try again."
                     session.endDialog(resp)
                 }
-                else if(results.response.entity.toLowerCase().includes('connected')){
+                else if(results.response.toLowerCase().includes('connected')){
                     resp = "Are you connected to LAN or Wifi"
                     builder.Prompts.text(session,resp)
                 }
@@ -117,11 +117,11 @@ module.exports = (bot) => {
                     resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
                     session.endDialog(resp);
                 }
-                else if(results.response.entity.toLowerCase().includes('lan')){
+                else if(results.response.toLowerCase().includes('lan')){
                     resp = "IT support person will come to your desk in 20 minutes to resolve the issue. Thanks !!"
                     session.endDialog(resp)
                 }
-                else if(results.response.entity.toLowerCase().includes('wifi')){
+                else if(results.response.toLowerCase().includes('wifi')){
                     resp = "Please connect to LAN cable and try again."
                     session.endDialog(resp)
                 }
