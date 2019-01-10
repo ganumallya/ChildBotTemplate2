@@ -17,13 +17,13 @@ module.exports = (bot) => {
     //Conversation Registerations for LUIS
 
     //HR Onboarding dialogs
-    require('./HRPolicies/attendance_dialog')(bot);
-    require('./HRPolicies/leave_dialog')(bot);
-    require('./HRPolicies/hronboarding_QnAdialog')(bot);
+    //require('./HRPolicies/attendance_dialog')(bot);
+    //require('./HRPolicies/leave_dialog')(bot);
+    //require('./HRPolicies/hronboarding_QnAdialog')(bot);
 
-    require('./HRPolicies/salaryAdvance')(bot);
-    require('./HRPolicies/disciplinary')(bot);
-    require('./HRPolicies/consulting')(bot);
+    //require('./HRPolicies/salaryAdvance')(bot);
+    //require('./HRPolicies/disciplinary')(bot);
+    //require('./HRPolicies/consulting')(bot);
 
     //IT Support Dialogs
     require('./ITSupport/laptopScreen_dialog')(bot);
