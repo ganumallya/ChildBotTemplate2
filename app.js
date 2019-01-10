@@ -51,7 +51,7 @@ var bot = new builder.UniversalBot(connector, function (session, args) {
 bot.use({
     botbuilder: function (session, next) {
         myMiddleware.logIncomingMessage(session, next);
-        myMiddleware.getSkypeID(session,next);
+        //myMiddleware.getSkypeID(session,next);
         //console.log("Skype User ID is......"+session.privateConversation.skypeID)
     },
     send: function (event, next) {
