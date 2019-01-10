@@ -11,12 +11,12 @@ module.exports = (bot) => {
             console.log(args);
             console.log(session.message.text)
             var resp = '';
+            session.privateConversationData.locations = '';
             if(args.intent.entities.length>0){
                 var intent = args.intent;
                 var title = builder.EntityRecognizer.findEntity(intent.entities, 'Location');
                 var printer = builder.EntityRecognizer.findEntity(intent.entities, 'PrinterType');
                 console.log("working,..........."+title);
-                session.privateConversationData.locations = '';
                 if(title){
                     if(title.entity.length>0){
                         console.log("printinggggggggggg........."+title.entity);
