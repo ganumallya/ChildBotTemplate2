@@ -6,8 +6,11 @@ module.exports = (bot) => {
     
     bot.dialog('/PrinterIntentDialog', [
         function (session, args, next) {
+            var userID = session.message.address.user.id;
+            console.log("USER ID IS:"+userID)
             console.log(args);
-            var responses;
+            console.log(session.message.text)
+            var resp = '';
             if(args.intent.entities.length>0){
                 var intent = args.intent;
                 var title = builder.EntityRecognizer.findEntity(intent.entities, 'Location');
@@ -18,29 +21,54 @@ module.exports = (bot) => {
                     if(title.entity.length>0){
                         console.log("printinggggggggggg........."+title.entity);
                         session.privateConversationData.locations = title.entity;
-                        session.send('IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved.');
+                        resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
+                        session.endDialog(resp);
                     }
                 }
                 if(printer && printer.resolution.values.length > 0){
-                    if(printer.resolution.values[0].toLowerCase().includes('cartridge')){
-                        session.send('Please share printer\'s physical location for which the issue persists.');
+                    if(printer.resolution.values[0].toLowerCase().includes('cartridge') || printer.resolution.values[0].toLowerCase().includes('jam')){
+                        resp = "Please share printer\'s physical location for which the issue persists."
+                        builder.Prompts.text(session,resp);
                     }
-                    else if(printer.resolution.values[0].toLowerCase().includes('jam')){
-                        session.send('Please share printer\'s physical location for which the issue persists.');
+                    else if(printer.resolution.values[0].toLowerCase().includes('setup') || printer.resolution.values[0].toLowerCase().includes('lan')){
+                        resp = "IT support person will come to your desk in 20 minutes to resolve the issue. Thanks !!"
+                        session.endDialog(resp)
                     }
-                    else if(printer.resolution.values[0].toLowerCase().includes('printer')){
-                        builder.Prompts.choice(session,'Please choose the appropriate category.','1. Paper Jam|2. Cartridge Replacement|3. Printer Setup on personal machine|4. Printing issues|5. Others',{ listStyle:builder.ListStyle.button});
+                    else if(printer.resolution.values[0].toLowerCase().includes('printing')){
+                        resp = "Please check for your network whether its connected or not?\n\n1. Network Connected\n2. Network not connected"
+                        builder.Prompts.text(session,resp)
+                    }
+                    else if(printer.resolution.values[0].toLowerCase().includes('wifi')){
+                        resp = "Please connect to LAN cable and try again."
+                        session.endDialog(resp)
+                    }
+                    else if(printer.resolution.values[0].toLowerCase().includes('not')){
+                        resp = "Please connect to the network and try again."
+                        session.endDialog(resp)
+                    }
+                    else if(printer.resolution.values[0].toLowerCase().includes('connected')){
+                        resp = "Are you connected to LAN or Wifi"
+                        builder.Prompts.text(session,resp)
                     }
                     else{
-                        session.send('I did not understand. Could you please rephraze.');
+                        resp = "Please choose the appropriate category.\n\nPaper Jam\nCartridge Replacement\nPrinter Setup on personal machine\nPrinting issues\nOthers"
+                        builder.Prompts.text(session,resp);
                     }
                 }
             }
+            else{
+                resp = "Please choose the appropriate category.\n\nPaper Jam\nCartridge Replacement\nPrinter Setup on personal machine\nPrinting issues\nOthers"
+                builder.Prompts.text(session,resp);
+            }
+            var id = session.message.address.user.id;
+            require('../../mongoLog')(id, session.message.text, resp, 'PrinterIntent')
         },
         function(session,results){
             console.log(results);
+            var resp ='';
             if(session.privateConversationData.locations.length>0){
-                session.send('IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved.');
+                resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
+                session.endDialog(resp);
             }
             else{
                 var title = builder.EntityRecognizer.findEntity(results.response.entities, 'Location');
@@ -50,21 +78,32 @@ module.exports = (bot) => {
                         session.privateConversationData.locations = title.entity;
                     }
                 }
-                if(results.response.entity.toLowerCase().includes('cartridge')){
-                    session.send('Please share printer\'s physical location for which the issue persists.');
-                }
-                else if(results.response.entity.toLowerCase().includes('jam')){
-                    session.send('Please share printer\'s physical location for which the issue persists.');
+                if(results.response.entity.toLowerCase().includes('cartridge') || results.response.entity.toLowerCase().includes('jam')){
+                    resp = "Please share printer\'s physical location for which the issue persists."
+                    builder.Prompts.text(session,resp);
                 }
                 else if(results.response.entity.toLowerCase().includes('location')){
-                    session.send('IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved.');
+                    resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
+                    session.endDialog(resp);
+                }
+                else if(results.response.entity.toLowerCase().includes('not')){
+                    resp = "Please connect to the network and try again."
+                    session.endDialog(resp)
+                }
+                else if(results.response.entity.toLowerCase().includes('connected')){
+                    resp = "Are you connected to LAN or Wifi"
+                    builder.Prompts.text(session,resp)
                 }
             }
+            var id = session.message.address.user.id;
+            require('../../mongoLog')(id, session.message.text, resp, 'PrinterIntent')
         },
-        function(session,result){
+        function(session,results){
             console.log(results);
+            var resp = '';
             if(session.privateConversationData.locations.length>0){
-                session.send('IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved.');
+                resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
+                session.endDialog(resp);
             }
             else{
                 var title = builder.EntityRecognizer.findEntity(intent.entities, 'Location');
@@ -75,9 +114,24 @@ module.exports = (bot) => {
                     }
                 }
                 if(results.response.entity.toLowerCase().includes('location')){
-                    session.endDialog('IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved.');
+                    resp = "IT team will resolve the issue in next 30 minutes. Team will let you know once the issue is resolved."
+                    session.endDialog(resp);
+                }
+                else if(results.response.entity.toLowerCase().includes('lan')){
+                    resp = "IT support person will come to your desk in 20 minutes to resolve the issue. Thanks !!"
+                    session.endDialog(resp)
+                }
+                else if(results.response.entity.toLowerCase().includes('wifi')){
+                    resp = "Please connect to LAN cable and try again."
+                    session.endDialog(resp)
+                }
+                else{
+                    resp = "IT support person will come to your friend's/colleague's desk in 20 minutes to resolve the issue. Thanks !!"
+                    session.endDialog(resp)
                 }
             }
+            var id = session.message.address.user.id;
+            require('../../mongoLog')(id, session.message.text, resp, 'PrinterIntent')
         }
     ]).triggerAction({
         matches: 'PrinterIntent',
