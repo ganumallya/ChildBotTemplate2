@@ -3,8 +3,8 @@ var cognitiveservices = require('botbuilder-cognitiveservices');
 
 // -------- Q/A Recognizer registrations --------------
 var Consolidated_QnAMaker = {
-    knowledgeBaseId: process.env.St_QNA_KBID || '4deeaef2-80be-414d-9186-9a9820646801', 
-    authKey: process.env.St_QNA_KEY || '4a63c6ac-dedc-4168-a7ab-95e17e8916ab',
+    knowledgeBaseId: process.env.St_QNA_KBID || '0abcfd58-597b-4bd7-8bf6-78c077bd7527', 
+    authKey: process.env.St_QNA_KEY || '57ebac01-df7c-44d7-8b6e-ca81fadc6165',
     endpointHostName: process.env.QNA_HOST || 'https://tao-evaa.azurewebsites.net/qnamaker',
     top: 1};
 
