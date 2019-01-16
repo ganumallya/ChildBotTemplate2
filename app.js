@@ -43,7 +43,7 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 // match any intents handled by other dialogs.
 var bot = new builder.UniversalBot(connector, function (session, args) {
     //qnamaker(smalltalk_qna_maker,session.message.text,(result)=>{
-    session.endDialog("Sorry, I am not trained enough to answer your query. Please contact IT support team on ID - itsupport@taoautomation.com");
+    session.endDialog("Sorry, I am not trained enough to answer your query. Please contact IT support team on ID - itsupport@taoautomation.com\n\nI can help you with Printer related issues and Laptop Screen related issues");
     //});
 });
 
