@@ -42,9 +42,9 @@ var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azu
 // This default message handler is invoked if the user's utterance doesn't
 // match any intents handled by other dialogs.
 var bot = new builder.UniversalBot(connector, function (session, args) {
-    qnamaker(smalltalk_qna_maker,session.message.text,(result)=>{
-        session.endDialog(result);
-    });
+    //qnamaker(smalltalk_qna_maker,session.message.text,(result)=>{
+    session.endDialog("Sorry, I am not trained enough to answer you query. Please contact IT support team on ID - itsupport@taoautomation.com");
+    //});
 });
 
 //Logging Incoming and Outgoing message in consoless
