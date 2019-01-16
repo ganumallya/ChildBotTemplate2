@@ -28,6 +28,7 @@ module.exports = (bot) => {
     //IT Support Dialogs
     require('./ITSupport/laptopScreen_dialog')(bot);
     require('./ITSupport/printer')(bot);
+    require('./ITSupport/itSupportintent')(bot);
     
     
     //Small Talk Dialog
