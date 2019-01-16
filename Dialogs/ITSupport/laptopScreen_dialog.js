@@ -23,14 +23,14 @@ module.exports = (bot) => {
             console.log(results);
             var res = ''
             if(results.response.entity.toLowerCase().includes('touch')){
-                res = "There must be some problem with the strip cable."+"\nAre you raising this request for yourself or on behalf of your friend/colleague ?"
-                session.send(res);
-                builder.Prompts.choice(session,"Are you raising this request for yourself or on behalf of your friend/colleague ?","For Me|For Friend/Colleague",{ listStyle:builder.ListStyle.button});
+                res = "There must be some problem with the strip cable."+"\nAre you raising this request for yourself or on behalf of your colleague ?"
+                //session.send(res);
+                builder.Prompts.choice(session,res","For Me|For Colleague",{ listStyle:builder.ListStyle.button});
             }
             else if(results.response.entity.toLowerCase().includes('flickering')){
-                res = "There must be some problem with motherboard."+"\nAre you raising this request for yourself or on behalf of your friend/colleague ?"
-                session.send(res);
-                builder.Prompts.choice(session,"Are you raising this request for yourself or on behalf of your friend/colleague ?","For Me|For Friend/Colleague",{ listStyle:builder.ListStyle.button});
+                res = "There must be some problem with motherboard."+"\nAre you raising this request for yourself or on behalf of your colleague ?"
+                //session.send(res);
+                builder.Prompts.choice(session,res,"For Me|For Colleague",{ listStyle:builder.ListStyle.button});
             }
             else{
                 var res = "I did not understand. Can you please rephraze."
@@ -48,7 +48,7 @@ module.exports = (bot) => {
             }
             else if(results.response.entity.toLowerCase().includes('friend') || results.response.entity.toLowerCase().includes('colleague')){
                 res = "Please help me with your Colleague's/Friend's Name and Employee ID"
-                session.send(res);
+                builder.Prompts.text(session,res);
             }
             else{
                 //session.reset();
@@ -60,7 +60,7 @@ module.exports = (bot) => {
         },
         function(session,results){
             console.log(results);
-            var res = "I have raised a request for your Friend/Colleague. IT support person will come to his/her desk in 30 minutes. The person will resolve the issue."
+            var res = "I have raised a request for your Colleague. IT support person will come to his/her desk in 30 minutes. The person will resolve the issue."
             session.endDialog(res);
             var id = session.message.address.user.id;
             require('../../mongoLog')(id, session.message.text, res, 'LaptopScreenIntent')            
