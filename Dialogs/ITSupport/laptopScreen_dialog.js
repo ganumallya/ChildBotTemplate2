@@ -25,7 +25,7 @@ module.exports = (bot) => {
             if(results.response.entity.toLowerCase().includes('touch')){
                 res = "There must be some problem with the strip cable."+"\nAre you raising this request for yourself or on behalf of your colleague ?"
                 //session.send(res);
-                builder.Prompts.choice(session,res","For Me|For Colleague",{ listStyle:builder.ListStyle.button});
+                builder.Prompts.choice(session,res,"For Me|For Colleague",{ listStyle:builder.ListStyle.button});
             }
             else if(results.response.entity.toLowerCase().includes('flickering')){
                 res = "There must be some problem with motherboard."+"\nAre you raising this request for yourself or on behalf of your colleague ?"
@@ -47,7 +47,7 @@ module.exports = (bot) => {
                 session.endDialog(res);
             }
             else if(results.response.entity.toLowerCase().includes('friend') || results.response.entity.toLowerCase().includes('colleague')){
-                res = "Please help me with your Colleague's/Friend's Name and Employee ID"
+                res = "Please help me with your Colleague's Name and Employee ID"
                 builder.Prompts.text(session,res);
             }
             else{
