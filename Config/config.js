@@ -6,7 +6,7 @@ const smalltalk_qna_maker =require('./smalltalks_qna_maker_config');
 const config = {
     "PRECISE_THRESHOLD" : 0.15,
     "RELATED_THRESHOLD" : 0.30,
-    "CONFIDENCE_THRESHOLD" : 0.40,
+    "CONFIDENCE_THRESHOLD" : 0.60,
     "CONFIRMATION_LUIS_HELPER_URL":'xxxx'
 };
 
