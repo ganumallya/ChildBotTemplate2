@@ -71,7 +71,7 @@ module.exports = (bot) => {
                 session.endDialog(resp);
             }
             var id = session.message.address.user.id;
-            require('../../mongoLog')(id, session.message.text, resp, 'PrinterIntent')
+            require('../../mongoLog')(id, session.message.text, resp, 'ConsultingIntent')
         }
     ]).triggerAction({
         matches: 'ConsultingIntent',
